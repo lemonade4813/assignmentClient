@@ -4,7 +4,7 @@
 
 2. 실행 : npm start
 
-(실행시 : http://localhost: 3000)
+(실행 시 : http://localhost: 3000)
 
 ### 2. 기능 설명
 
