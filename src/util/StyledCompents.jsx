@@ -1,9 +1,13 @@
 import styled from "styled-components"
 
-export const Td = styled.td`
+export const Tabletd = styled.td`
     border-radius : 5px;
     border : 1px solid #000;
-    background-color : rgba(245, 87, 41, 0.4)
+    background-color : rgba(245, 87, 41, 0.4);
+
+    :hover {
+      background-color : rgba(153, 204, 255, 0.4);
+    }
 `
 
 export const SelectTable = styled.table`

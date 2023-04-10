@@ -1,6 +1,6 @@
-import { useCallback, useMemo, useState } from 'react';
+import {  useMemo, useState } from 'react';
 import { categorys, tableOrderMenus } from '../src/util/tableOrderMenu';
-import { SelectTable, Td, MenuListTable, MenuThead, MenuTbody, SelectedMenuListTable, OrderSummaryTable } from './util/StyledCompents';
+import { SelectTable, Tabletd, MenuListTable, MenuThead, MenuTbody, SelectedMenuListTable, OrderSummaryTable } from './util/StyledCompents';
 
 
 function App() {
@@ -95,44 +95,24 @@ function App() {
 
 
 
-// const fetchOrder = async (tableNum) => {
-
-//   try{
-//     const response = await fetch(`http://localhost:8080/order/retrieve?tableNum=${tableNum}`)
-//         if(!response.ok){
-//           throw Error("에러가 발생하였습니다. 다시 시도해 주십시오.");
-//         }
-//       const responseJson = await response.json();
-//       setOrderList(responseJson.data);
-
-//     }
-//     catch(err){
-//       console.log(err);
-//       alert(err.message);
-//   }
-// }
-
-
-
 const fetchOrder = async (tableNum) => {
 
   try{
-    const responseSummary = await fetch(`http://localhost:8080/order/summary?tableNum=${tableNum}`)
-    const responseDetail = await fetch(`http://localhost:8080/order/detail?tableNum=${tableNum}`)
-        
-  
+    
+      const responseSummary = await fetch(`http://localhost:8080/order/summary?tableNum=${tableNum}`)
       const summary = await responseSummary.json();
-
       setOrderSummary(summary.data);
-      console.log(`orderSummary : ${JSON.stringify(orderSummary)}`)
 
+
+      if(orderSummary){ 
+      const responseDetail = await fetch(`http://localhost:8080/order/detail?orderId=${orderSummary.orderId}`)
       const detail = await responseDetail.json();
       setOrderDetail(detail.data);
-      console.log(`orderDetail : ${JSON.stringify(orderDetail)}`)
+      
+      }
 
     }
     catch(err){
-      console.log(err);
       alert(err.message);
   }
 }
@@ -142,11 +122,6 @@ const selectTableNum = (tableNum) =>{
   setTableNum(tableNum);
   fetchOrder(tableNum);
 }
-
-console.log(orderDetail)
-console.log(orderSummary)
-console.log(tableNum)
-
 
 const saveOrder = async () => {
 
@@ -172,6 +147,17 @@ const saveOrder = async () => {
 } 
 
 
+const updateOrderTable = async (orderId) => {
+
+  try{
+    await fetch(`http://localhost:8080/order/update?orderId=${orderId}`)
+    window.location.reload();
+  }
+  catch(err){
+    console.log(err)
+  }
+} 
+
   return (
        <div className='App'>          
         <div>
@@ -179,16 +165,16 @@ const saveOrder = async () => {
           <SelectTable>
             <tbody>
             <tr>
-              <Td onClick={()=>selectTableNum(1)}>1</Td>
-              <Td onClick={()=>selectTableNum(2)}>2</Td>
-              <Td onClick={()=>selectTableNum(3)}>3</Td>
-              <Td onClick={()=>selectTableNum(4)}>4</Td>
-              <Td onClick={()=>selectTableNum(5)}>5</Td>
-              <Td onClick={()=>selectTableNum(6)}>6</Td>
-              <Td onClick={()=>selectTableNum(7)}>7</Td>
-              <Td onClick={()=>selectTableNum(8)}>8</Td>
-              <Td onClick={()=>selectTableNum(9)}>9</Td>
-              <Td onClick={()=>selectTableNum(10)}>10</Td>
+              <Tabletd onClick={()=>selectTableNum(1)}>1</Tabletd>
+              <Tabletd onClick={()=>selectTableNum(2)}>2</Tabletd>
+              <Tabletd onClick={()=>selectTableNum(3)}>3</Tabletd>
+              <Tabletd onClick={()=>selectTableNum(4)}>4</Tabletd>
+              <Tabletd onClick={()=>selectTableNum(5)}>5</Tabletd>
+              <Tabletd onClick={()=>selectTableNum(6)}>6</Tabletd>
+              <Tabletd onClick={()=>selectTableNum(7)}>7</Tabletd>
+              <Tabletd onClick={()=>selectTableNum(8)}>8</Tabletd>
+              <Tabletd onClick={()=>selectTableNum(9)}>9</Tabletd>
+              <Tabletd onClick={()=>selectTableNum(10)}>10</Tabletd>
             </tr>   
             </tbody>
           </SelectTable>
@@ -224,7 +210,6 @@ const saveOrder = async () => {
         </>
         )
         )}
-
                 {cartItems.length > 0 && (
                   <div>
                     <p>STEP3. 선택한 메뉴와 결제금액을 확인해 주세요.</p>
@@ -256,7 +241,8 @@ const saveOrder = async () => {
            {cartItems.length > 0 && (
            <div>
               <button onClick={deleteAllMenu}>선택 메뉴 모두 삭제</button> 
-              <p>총계 : {totalPrice} </p> <p>총 수량 : {totalCount}</p> 
+              <p>총 수량 : {totalCount}</p> 
+              <p>총계 : {totalPrice} </p> 
               <button onClick={saveOrder}>주문하기</button>
            </div> 
             )}  
@@ -306,6 +292,7 @@ const saveOrder = async () => {
                           ))}
                           </MenuTbody>
                       </SelectedMenuListTable>
+                      <button onClick={()=>updateOrderTable(orderSummary.orderId)}>식사완료</button>
                   </div>
                   
                   </div>
