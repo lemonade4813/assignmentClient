@@ -25,6 +25,11 @@
  
 ![image](https://user-images.githubusercontent.com/103189961/230839859-53567046-5e75-49e6-8d7d-c71336dba47a.png)
 
+3) 해당 테이블을 다시 클릭하면 주문정보를 확인할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/103189961/230887557-3fdaac46-e603-4f9d-a52b-d336213f3d9f.png)
+
+
 * 사용 중인 테이블인 경우
 
 1) 주문번호와, 주문일자, 주문 상세정보(메뉴, 수량, 가격)가 표시됩니다.
