@@ -8,7 +8,7 @@
 
 1. 사용할 테이블을 선택합니다.
 
-![image](https://user-images.githubusercontent.com/103189961/230838964-3eed20ab-41c9-47bc-91af-ca723cec8354.png)
+![image](https://user-images.githubusercontent.com/103189961/230841200-33e8fffc-7667-4630-a6ae-ca7c95c9da33.png)
 
 
 2. 테이블 주문
@@ -16,6 +16,7 @@
 * 사용 중인 테이블이 아닐 경우
 
 1) 카테고리를 선택하여 해당 카테고리별 주문메뉴가 표시되며, 해당 메뉴 클릭시 "STEP3"의 주문 리스트에 추가됩니다.
+
    ![image](https://user-images.githubusercontent.com/103189961/230839200-33be3fd5-5a6f-4396-9b1c-030b77d2fd42.png)
 
 2) STEP3에서 주문한 메뉴와, 수량, 가격을 확인할 수 있으며, 하단의 주문하기 버튼을 누르면 주문 처리가 진행됩니다.
