@@ -42,6 +42,9 @@ yy 시분 형태로 표현되도록 합니다.
 ---------------------------------
 
 
+서버 Repository : https://github.com/lemonade4813/assignmentServer
+
+
 ### 1. 실행방법
 
 1. 패키지 설치 : npm install 
